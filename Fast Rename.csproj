@@ -4,6 +4,16 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>Fast_Rename</RootNamespace>
+    <ApplicationIcon />
+    <Win32Resource />
+    <Authors>Vladyslav Diachenko</Authors>
+    <SignAssembly>false</SignAssembly>
+    <StartupObject></StartupObject>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Prefer32Bit>true</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
 
 </Project>

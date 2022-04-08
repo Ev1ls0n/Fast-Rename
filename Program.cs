@@ -9,23 +9,41 @@ namespace Fast_Rename
         {
             Console.Title = "Fast Rename - Program by Vladyslav Diachenko";
 
+            while (true)
+            {
+                RenameFilesMenu();
+
+                Console.Clear();
+                Console.WriteLine("(?) Press \"esc\" to exit, or any other key to continue.");
+                Console.Write("> ");
+
+                if (Console.ReadKey().Key == ConsoleKey.Escape)
+                    return;
+
+                Console.Clear();
+            }
+        }
+
+        private static void RenameFilesMenu()
+        {
             string path = String.Empty;         // The path to the directory with the necessary files
             string currentPart = String.Empty;  // The part of the file name that needs to be renamed
             string newPart = String.Empty;      // The part of the filename that needs to be written in the filename
 
             Console.WriteLine("(i) Enter the path where you want to rename the files.");
-            Console.Write("> ");
-            path = Console.ReadLine();
-
-            // Check if a directory exists
-            if (!Directory.Exists(path))
+            do
             {
-                Console.WriteLine("(!) The specified directory does not exist.");
-                Console.WriteLine("(i) Press any key...");
-                Console.ReadKey();
+                Console.Write("> ");
+                path = Console.ReadLine();
 
-                return;
+                // Check if a directory exists
+                if (!Directory.Exists(path))
+                {
+                    Console.WriteLine("(!) The specified directory does not exist.");
+                    Console.WriteLine("(i) Try again.");
+                }
             }
+            while (!Directory.Exists(path));
 
             Console.WriteLine("(i) Enter the part of the file name(s) you want to rename.");
             Console.Write("> ");
@@ -35,7 +53,7 @@ namespace Fast_Rename
             Console.Write("> ");
             newPart = Console.ReadLine();
 
-            DirectoryInfo directoryInfo = new DirectoryInfo(path); 
+            DirectoryInfo directoryInfo = new DirectoryInfo(path);
             FileInfo[] files = directoryInfo.GetFiles("*" + currentPart + "*.*");
 
             // Check if the necessary files are found
